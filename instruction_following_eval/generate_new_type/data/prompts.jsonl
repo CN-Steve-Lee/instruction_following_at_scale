@@ -1,0 +1,2 @@
+{"key": 2009, "prompt": "Provide a date that I use for writing essays in the format YYYY-MM-DD.", "instruction_id_list": ["DateFormatChecker"], "kwargs": [{"date_format": "YYYY-MM-DD"}]}
+{"key": 2010, "prompt": "Please generate a birthdate in the format YYYY-MM-DD.", "instruction_id_list": ["DateFormatChecker"], "kwargs": [{"date_format": "YYYY-MM-DD"}]}

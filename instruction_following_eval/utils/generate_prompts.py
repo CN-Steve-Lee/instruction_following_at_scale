@@ -39,4 +39,3 @@ with open('data/prompts.jsonl', 'w', encoding='utf-8') as f:
     for entry in generate_list:
         f.write(entry + '\n')
 
-

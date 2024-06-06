@@ -51,3 +51,5 @@ for typeName, class_name in instruction_dict.items():
 with open('data/instruction_kwargs_entries.jsonl', 'w', encoding='utf-8') as f:
     for entry in final_dict:
         f.write(json.dumps(entry) + '\n')
+
+

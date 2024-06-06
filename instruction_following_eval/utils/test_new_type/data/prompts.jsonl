@@ -1,0 +1,10 @@
+{"key": 2001, "prompt": "Please provide the payment methods your company supports. Your response should start with 'Question:' followed by 'Answer:'.", "instruction_id_list": ["question_answer_format"], "kwargs": [{}]}
+{"key": 2002, "prompt": "Can you explain how your product works? Start your response with 'Question:' and then follow it with 'Answer:'.", "instruction_id_list": ["question_answer_format"], "kwargs": [{}]}
+{"key": 2003, "prompt": "Write a string that matches the regex pattern ^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$.", "instruction_id_list": ["regex_match"], "kwargs": [{"pattern": "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"}]}
+{"key": 2004, "prompt": "Please write a text that matches the regex pattern ^\\d{3}-\\d{2}-\\d{4}$.", "instruction_id_list": ["regex_match"], "kwargs": [{"pattern": "^\\d{3}-\\d{2}-\\d{4}$"}]}
+{"key": 2005, "prompt": "Please include a number between 50 and 150 in your response.", "instruction_id_list": ["number_in_response"], "kwargs": [{"min_value": 50, "max_value": 150}]}
+{"key": 2006, "prompt": "Write a short paragraph that contains a number between 1 and 10.", "instruction_id_list": ["number_in_response"], "kwargs": [{"min_value": 1, "max_value": 10}]}
+{"key": 2007, "prompt": "Start your answer with 'Introduction:' and end it with 'Conclusion.'.", "instruction_id_list": ["start_end_match"], "kwargs": [{"start_text": "Introduction:", "end_text": "Conclusion."}]}
+{"key": 2008, "prompt": "Write a response that begins with 'First:' and concludes with 'Last.'.", "instruction_id_list": ["start_end_match"], "kwargs": [{"start_text": "First:", "end_text": "Last."}]}
+{"key": 2009, "prompt": "Provide a date that I use for writing essays in the format YYYY-MM-DD.", "instruction_id_list": ["date_format"], "kwargs": [{"date_format": "YYYY-MM-DD"}]}
+{"key": 2010, "prompt": "Please generate a birthdate in the format YYYY-MM-DD.", "instruction_id_list": ["date_format"], "kwargs": [{"date_format": "YYYY-MM-DD"}]}

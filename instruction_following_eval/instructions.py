@@ -1564,3 +1564,204 @@ class QuotationChecker(Instruction):
     """Checks if the response is wrapped with double quotation marks."""
     value = value.strip()
     return len(value) > 1 and value[0] == '"' and value[-1] == '"'
+
+
+
+
+# TODO:add new checkers
+
+import re
+
+
+class QuestionAnswerFormatChecker(Instruction):
+  """Checks that the response follows the question-answer format."""
+
+  def build_description(self):
+    """Build the instruction description.
+
+    Returns:
+        A string representing the instruction description.
+    """
+    self._description_pattern = (
+      "Your response should start with '问题：' followed by '回答：'."
+    )
+    return self._description_pattern
+
+  def get_instruction_args(self):
+    """Returns the keyward args of `build_description`."""
+    return None
+
+  def get_instruction_args_keys(self):
+    """Returns the args keys of `build_description`."""
+    return []
+
+  def check_following(self, value):
+    """Checks if the response follows the question-answer format.
+
+    Args:
+        value: A string representing the response.
+
+    Returns:
+        True if the response follows the instruction; otherwise False.
+    """
+    return value.startswith("问题：") and "回答：" in value
+
+class RegexMatchChecker(Instruction):
+  """Checks that the response matches a specific regex pattern."""
+
+  def build_description(self, *, pattern: str):
+    """Build the instruction description.
+
+    Args:
+        pattern: A string representing the regex pattern that the response should match.
+
+    Returns:
+        A string representing the instruction description.
+    """
+    self._pattern = pattern
+    self._description_pattern = (
+      "Your response should match the following regex pattern: {pattern}"
+    )
+    return self._description_pattern.format(pattern=self._pattern)
+
+  def get_instruction_args(self):
+    """Returns the keyward args of `build_description`."""
+    return {"pattern": self._pattern}
+
+  def get_instruction_args_keys(self):
+    """Returns the args keys of `build_description`."""
+    return ["pattern"]
+
+  def check_following(self, value):
+    """Checks if the response matches the regex pattern.
+
+    Args:
+        value: A string representing the response.
+
+    Returns:
+        True if the response matches the pattern; otherwise False.
+    """
+    return re.search(self._pattern, value) is not None
+
+class NumberInResponseChecker(Instruction):
+  """Checks that the response contains a number within a specified range."""
+
+  def build_description(self, *, min_value: int, max_value: int):
+    """Build the instruction description.
+
+    Args:
+        min_value: An integer representing the minimum value of the range.
+        max_value: An integer representing the maximum value of the range.
+
+    Returns:
+        A string representing the instruction description.
+    """
+    self._min_value = min_value
+    self._max_value = max_value
+    self._description_pattern = (
+      "Your response should contain a number between {min_value} and {max_value}."
+    )
+    return self._description_pattern.format(min_value=self._min_value, max_value=self._max_value)
+
+  def get_instruction_args(self):
+    """Returns the keyward args of `build_description`."""
+    return {"min_value": self._min_value, "max_value": self._max_value}
+
+  def get_instruction_args_keys(self):
+    """Returns the args keys of `build_description`."""
+    return ["min_value", "max_value"]
+
+  def check_following(self, value):
+    """Checks if the response contains a number within the specified range.
+
+    Args:
+        value: A string representing the response.
+
+    Returns:
+        True if the response contains a number within the range; otherwise False.
+    """
+    numbers = re.findall(r'\d+', value)
+    for number in numbers:
+      if self._min_value <= int(number) <= self._max_value:
+        return True
+    return False
+
+class StartEndMatchChecker(Instruction):
+  """Checks that the response starts and ends with specified text."""
+
+  def build_description(self, *, start_text: str, end_text: str):
+    """Build the instruction description.
+
+    Args:
+        start_text: A string representing the text that the response should start with.
+        end_text: A string representing the text that the response should end with.
+
+    Returns:
+        A string representing the instruction description.
+    """
+    self._start_text = start_text
+    self._end_text = end_text
+    self._description_pattern = (
+      "Your response should start with '{start_text}' and end with '{end_text}'."
+    )
+    return self._description_pattern.format(start_text=self._start_text, end_text=self._end_text)
+
+  def get_instruction_args(self):
+    """Returns the keyward args of `build_description`."""
+    return {"start_text": self._start_text, "end_text": self._end_text}
+
+  def get_instruction_args_keys(self):
+    """Returns the args keys of `build_description`."""
+    return ["start_text", "end_text"]
+
+  def check_following(self, value):
+    """Checks if the response starts and ends with the specified text.
+
+    Args:
+        value: A string representing the response.
+
+    Returns:
+        True if the response starts and ends with the specified text; otherwise False.
+    """
+    return value.startswith(self._start_text) and value.endswith(self._end_text)
+
+# class DateFormatChecker(Instruction):
+#   """Checks that the response contains a date in the specified format."""
+#
+#   def build_description(self, *, date_format: str = 'YYYY-MM-DD'):
+#     """Build the instruction description.
+#
+#     Args:
+#         date_format: A string representing the date format (default is 'YYYY-MM-DD').
+#
+#     Returns:
+#         A string representing the instruction description.
+#     """
+#     self._date_format = date_format
+#     self._description_pattern = (
+#       "Your response should contain a date in the format {date_format}."
+#     )
+#     return self._description_pattern.format(date_format=self._date_format)
+#
+#   def get_instruction_args(self):
+#     """Returns the keyward args of `build_description`."""
+#     return {"date_format": self._date_format}
+#
+#   def get_instruction_args_keys(self):
+#     """Returns the args keys of `build_description`."""
+#     return ["date_format"]
+#
+#   def check_following(self, value):
+#     """Checks if the response contains a date in the specified format.
+#
+#     Args:
+#         value: A string representing the response.
+#
+#     Returns:
+#         True if the response contains a date in the specified format; otherwise False.
+#     """
+#     if self._date_format == 'YYYY-MM-DD':
+#       pattern = r'\b\d{4}-\d{2}-\d{2}\b'
+#     else:
+#       raise ValueError("Unsupported date format")
+#     return re.search(pattern, value) is not None

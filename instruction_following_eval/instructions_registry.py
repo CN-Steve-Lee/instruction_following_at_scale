@@ -74,6 +74,11 @@ INSTRUCTION_DICT = {
     + "english_lowercase": instructions.LowercaseLettersEnglishChecker,
     _PUNCTUATION + "no_comma": instructions.CommaChecker,
     _STARTEND + "quotation": instructions.QuotationChecker,
+    "question_answer_format": instructions.QuestionAnswerFormatChecker,
+    "regex_match": instructions.RegexMatchChecker,
+    "number_in_response": instructions.NumberInResponseChecker,
+    "start_end_match": instructions.StartEndMatchChecker,
+    # "date_format": instructions.DateFormatChecker,
 }
 
 INSTRUCTION_CONFLICTS = {

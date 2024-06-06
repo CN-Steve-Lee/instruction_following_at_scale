@@ -1,0 +1,5 @@
+{"instruction_type": "question_answer_format", "kwargs": {}}
+{"instruction_type": "regex_match", "kwargs": {"pattern": "A string representing the regex pattern that the response should match."}}
+{"instruction_type": "number_in_response", "kwargs": {"min_value": "An integer representing the minimum value of the range.","max_value": "An integer representing the maximum value of the range."}}
+{"instruction_type": "start_end_match", "kwargs": {"start_text":"A string representing the text that the response should start with.","end_text": "A string representing the text that the response should end with."}}
+{"instruction_type": "date_format", "kwargs": {"date_format": " A string representing the date format (default is 'YYYY-MM-DD')."}}

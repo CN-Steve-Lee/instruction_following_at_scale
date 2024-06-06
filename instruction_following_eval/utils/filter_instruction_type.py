@@ -28,18 +28,6 @@ def filter_and_save(data, instruction_ids):
     ensure_directory(base_directory)
 
 
-    # b = {}
-    # for top_key, sub_dict in filtered_data.items():
-    #
-    #     sub_keys = list(sub_dict.keys())[:2]
-    #     b[top_key] = {key: sub_dict[key] for key in sub_keys}
-    #
-    # c = []
-    # for sub_dict in b.values():
-    #     for item in sub_dict.values():
-    #         c.append(item)
-    # json_str = json.dumps(c, ensure_ascii=False, indent=4)
-
     for instruction_id, items_dict in filtered_data.items():
         if items_dict:
             items = list(items_dict.values())
@@ -54,7 +42,6 @@ def filter_and_save(data, instruction_ids):
 def main():
     file_path = '../data/input_data.jsonl'
     data = load_jsonl(file_path)
-
 
     instruction_ids = set()
     for item in data:

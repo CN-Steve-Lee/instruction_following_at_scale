@@ -291,7 +291,7 @@ class InstructionsTest(parameterized.TestCase):
           instruction.check_following(self.SECTION_TEST_MESSAGE_2))
 
   PARAGRAPH_TEST_MESSAGE_1 = """
-  paragraph 1
+  paragraph 1   
   ***
   paragraph 2
   ***

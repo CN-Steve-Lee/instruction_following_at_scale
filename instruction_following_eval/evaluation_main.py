@@ -27,21 +27,27 @@ from absl import logging
 
 from instruction_following_eval import instructions_registry
 
+# prompt_file_path="./utils/prompts.jsonl"
+# response_file_path="./utils/response_data_gpt4o_1.jsonl"
+# result_file_path="./eval_mock_data/"
+prompt_file_path="./utils/test_new_type/data/prompts.jsonl"
+response_file_path="./utils/test_new_type/data/response_data_gpt4o.jsonl"
+result_file_path="./utils/test_new_type/eval_mock_data/"
 
-_INPUT_DATA = flags.DEFINE_string(
-    "input_data", "./utils/prompts.jsonl", "path to input data", required=False
-)
-
-_INPUT_RESPONSE_DATA = flags.DEFINE_string(
-    "input_response_data", "./utils/response_data_gpt4o_1.jsonl", "path to input response data", required=False
-)
-
-_OUTPUT_DIR = flags.DEFINE_string(
-    "output_dir",
-    "./eval_mock_data/",
-    "Output directory for inference and eval results.",
-    required=False,
-)
+# _INPUT_DATA = flags.DEFINE_string(
+#     "input_data", prompt_file_path, "path to input data", required=False
+# )
+#
+# _INPUT_RESPONSE_DATA = flags.DEFINE_string(
+#     "input_response_data", response_file_path, "path to input response data", required=False
+# )
+#
+# _OUTPUT_DIR = flags.DEFINE_string(
+#     "output_dir",
+#     result_file_path,
+#     "Output directory for inference and eval results.",
+#     required=False,
+# )
 
 
 @dataclasses.dataclass
